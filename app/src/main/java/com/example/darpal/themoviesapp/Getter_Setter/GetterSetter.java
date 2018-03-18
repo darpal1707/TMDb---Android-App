@@ -1,6 +1,6 @@
 package com.example.darpal.themoviesapp.Getter_Setter;
 
-public class NowPlaying_GetterSetter {
+public class GetterSetter {
 
     String moviename;
     String release;

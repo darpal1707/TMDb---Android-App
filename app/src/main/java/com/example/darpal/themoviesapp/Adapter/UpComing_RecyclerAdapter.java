@@ -1,7 +1,6 @@
 package com.example.darpal.themoviesapp.Adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,30 +15,32 @@ import com.example.darpal.themoviesapp.R;
 
 import java.util.ArrayList;
 
-public class NowPlaying_RecyclerAdapter extends RecyclerView.Adapter<NowPlaying_RecyclerAdapter.MyVH> {
+public class UpComing_RecyclerAdapter extends RecyclerView.Adapter<UpComing_RecyclerAdapter.VH> {
 
     Context context;
     ArrayList<GetterSetter> arrayList = new ArrayList<>();
 
-    public NowPlaying_RecyclerAdapter(Context context, ArrayList<GetterSetter> arrayList){
+    public UpComing_RecyclerAdapter(Context context, ArrayList<GetterSetter> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
+
     @NonNull
     @Override
-    public NowPlaying_RecyclerAdapter.MyVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_cell, parent, false);
-        return new MyVH(view);
+        return new VH(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NowPlaying_RecyclerAdapter.MyVH holder, int position) {
+    public void onBindViewHolder(@NonNull VH holder, int position) {
         holder.MovieName.setText(arrayList.get(position).getMoviename());
         holder.Date.setText(arrayList.get(position).getRelease());
         holder.Rating.setText(arrayList.get(position).getRate());
         holder.Synopsis.setText(arrayList.get(position).getSynopsis());
-        holder.imgURL.setImageURI(Uri.parse(arrayList.get(position).getImgURL()));
+        if(holder.imgURL == null){
+            holder.imgURL.setImageResource(R.mipmap.ic_launcher);
+        }
     }
 
     @Override
@@ -47,13 +48,14 @@ public class NowPlaying_RecyclerAdapter extends RecyclerView.Adapter<NowPlaying_
         return arrayList.size();
     }
 
-    public class MyVH extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class VH extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imgURL;
         TextView MovieName, Date, Rating, Synopsis;
 
-        public MyVH(View itemView) {
+        public VH(View itemView) {
             super(itemView);
+
             MovieName = (TextView) itemView.findViewById(R.id.name);
             Date = (TextView) itemView.findViewById(R.id.Release);
             Rating = (TextView) itemView.findViewById(R.id.rating);

@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.darpal.themoviesapp.Adapter.NowPlaying_RecyclerAdapter;
-import com.example.darpal.themoviesapp.Getter_Setter.NowPlaying_GetterSetter;
+import com.example.darpal.themoviesapp.Getter_Setter.GetterSetter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,10 +29,10 @@ public class NowPlayingTabFragment extends Fragment {
     String key = "75b9d26d4dcc7e83af97eb5251c8a158";
     RecyclerView recyclerView;
     String URL ="https://api.themoviedb.org/3/movie/now_playing?api_key=" + key;
-    ArrayList<NowPlaying_GetterSetter> arrayList = new ArrayList<>();
+    ArrayList<GetterSetter> arrayList = new ArrayList<>();
     NowPlaying_RecyclerAdapter nowPlaying_recyclerAdapter;
 
-    String imgURL = "";
+    String imgURL = "poster_path";
     String Moviename = "title";
     String RelDate = "release_date";
     String SynDetails = "overview";
@@ -45,10 +45,11 @@ public class NowPlayingTabFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_now_playing_tab, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.nowPlayingRecycler);
 
+        nowPlaying_recyclerAdapter = new NowPlaying_RecyclerAdapter(getActivity(), arrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        //recyclerView.setAdapter(nowPlaying_recyclerAdapter);
+        recyclerView.setAdapter(nowPlaying_recyclerAdapter);
 
         Log.d("URL VALUE", URL);
         new Getdata().execute();
@@ -70,10 +71,12 @@ public class NowPlayingTabFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            Log.d("FIrst Line in DoIn", "inside the loop");
             ServiceHandler serviceHandler = new ServiceHandler();
             String result = serviceHandler.GetHTTPData(URL);
             try {
-                JSONArray jsonArray = new JSONArray(result);
+                JSONObject object = new JSONObject(result);
+                JSONArray jsonArray = object.getJSONArray("results");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String movie = jsonObject.getString(Moviename);
@@ -81,16 +84,18 @@ public class NowPlayingTabFragment extends Fragment {
                     String rate = jsonObject.getString(Ratemovie).toString();
                     String syn = jsonObject.getString(SynDetails);
 
-                    NowPlaying_GetterSetter setterGetter = new NowPlaying_GetterSetter();
+
+                    GetterSetter setterGetter = new GetterSetter();
                     setterGetter.setMoviename(movie);
                     setterGetter.setRelease(date);
                     setterGetter.setRate(rate);
                     setterGetter.setSynopsis(syn);
 
                     arrayList.add(setterGetter);
+                    Log.e("Inserted Data",URL);
                 }
             } catch (Exception e) {
-
+                    e.printStackTrace();
             }
 
             return null;
@@ -101,9 +106,9 @@ public class NowPlayingTabFragment extends Fragment {
             super.onPostExecute(aVoid);
             pd.dismiss();
             Log.e("MSG","In Post Execute");
-            nowPlaying_recyclerAdapter = new NowPlaying_RecyclerAdapter(getActivity(),arrayList);
-            recyclerView.setAdapter(nowPlaying_recyclerAdapter);
-
+            //nowPlaying_recyclerAdapter = new NowPlaying_RecyclerAdapter(getActivity(),arrayList);
+            //recyclerView.setAdapter(nowPlaying_recyclerAdapter);
+            nowPlaying_recyclerAdapter.notifyDataSetChanged();
         }
     }
 

@@ -3,21 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearl"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="#e3e3e3"
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:elevation="5dp"
-        app:cardCornerRadius="5dp">
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -43,44 +44,72 @@
                     android:layout_marginTop="10dp"
                     android:text="MovieRating"
                     android:textAlignment="center"
-                    android:textSize="10sp" />
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
 
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/namelbl"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/Release"
-                    android:layout_marginLeft="0dp"
+                    android:layout_height="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="Movie Name"
-                    android:textSize="18sp"
+                    android:text="Movie Name:"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Release"
+                    android:id="@+id/name"
+                    android:layout_width="125dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Movie Name"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Releaselbl"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/namelbl"
+                    android:text="Release Date: "
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/Release"
+                    android:layout_width="125dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
                     android:layout_below="@+id/name"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
                     android:text="Release Date"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/Synopsislbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/Release"
+                    android:layout_marginRight="8dp"
+                    android:text="Overview: "
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/Synopsis"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@+id/Release"
-                    android:layout_marginBottom="10dp"
-                    android:layout_margin="10dp"
+                    android:layout_below="@+id/Synopsislbl"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="8dp"
                     android:text="Synopsis"
-                    android:textSize="16sp" />
+                    android:textSize="10sp" />
 
             </RelativeLayout>
 
