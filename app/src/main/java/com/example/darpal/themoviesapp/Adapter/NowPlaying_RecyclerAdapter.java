@@ -1,7 +1,6 @@
 package com.example.darpal.themoviesapp.Adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,7 +38,7 @@ public class NowPlaying_RecyclerAdapter extends RecyclerView.Adapter<NowPlaying_
         holder.Date.setText(arrayList.get(position).getRelease());
         holder.Rating.setText(arrayList.get(position).getRate());
         holder.Synopsis.setText(arrayList.get(position).getSynopsis());
-        holder.imgURL.setImageURI(Uri.parse(arrayList.get(position).getImgURL()));
+        //holder.imgURL.setImageURI(Uri.parse(arrayList.get(position).getImgURL()));
     }
 
     @Override
@@ -58,7 +57,7 @@ public class NowPlaying_RecyclerAdapter extends RecyclerView.Adapter<NowPlaying_
             Date = (TextView) itemView.findViewById(R.id.Release);
             Rating = (TextView) itemView.findViewById(R.id.rating);
             Synopsis = (TextView) itemView.findViewById(R.id.Synopsis);
-            imgURL = (ImageView) itemView.findViewById(R.id.img);
+           // imgURL = (ImageView) itemView.findViewById(R.id.img);
 
             itemView.setOnClickListener(this);
         }

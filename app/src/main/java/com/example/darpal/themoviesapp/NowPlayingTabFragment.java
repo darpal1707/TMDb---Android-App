@@ -83,7 +83,7 @@ public class NowPlayingTabFragment extends Fragment {
                     String date = jsonObject.getString(RelDate);
                     String rate = jsonObject.getString(Ratemovie).toString();
                     String syn = jsonObject.getString(SynDetails);
-
+                    //String img = jsonObject.getString(imgURL);
 
                     GetterSetter setterGetter = new GetterSetter();
                     setterGetter.setMoviename(movie);
