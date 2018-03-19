@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.darpal.themoviesapp.Getter_Setter.GetterSetter;
 import com.example.darpal.themoviesapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,8 @@ public class NowPlaying_RecyclerAdapter extends RecyclerView.Adapter<NowPlaying_
         holder.Date.setText(arrayList.get(position).getRelease());
         holder.Rating.setText(arrayList.get(position).getRate());
         holder.Synopsis.setText(arrayList.get(position).getSynopsis());
-        //holder.imgURL.setImageURI(Uri.parse(arrayList.get(position).getImgURL()));
+        Picasso.with(context).load(arrayList.get(position).getImgURL()).resize(70,70).into(holder.imgURL);
+
     }
 
     @Override
@@ -57,7 +59,7 @@ public class NowPlaying_RecyclerAdapter extends RecyclerView.Adapter<NowPlaying_
             Date = (TextView) itemView.findViewById(R.id.Release);
             Rating = (TextView) itemView.findViewById(R.id.rating);
             Synopsis = (TextView) itemView.findViewById(R.id.Synopsis);
-           // imgURL = (ImageView) itemView.findViewById(R.id.img);
+            imgURL = (ImageView) itemView.findViewById(R.id.img);
 
             itemView.setOnClickListener(this);
         }
