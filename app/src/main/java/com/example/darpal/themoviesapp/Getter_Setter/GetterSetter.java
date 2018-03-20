@@ -7,6 +7,7 @@ public class GetterSetter {
     String rate;
     String synopsis;
     String imgURL;
+    String path = "https://image.tmdb.org/t/p/w500/";
 
     public String getMoviename() {
         return moviename;
@@ -25,7 +26,7 @@ public class GetterSetter {
     }
 
     public String getImgURL() {
-        return imgURL;
+        return path + imgURL;
     }
 
     public void setMoviename(String moviename) {

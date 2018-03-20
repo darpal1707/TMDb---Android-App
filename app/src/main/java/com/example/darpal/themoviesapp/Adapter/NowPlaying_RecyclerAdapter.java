@@ -1,6 +1,7 @@
 package com.example.darpal.themoviesapp.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ public class NowPlaying_RecyclerAdapter extends RecyclerView.Adapter<NowPlaying_
         holder.Date.setText(arrayList.get(position).getRelease());
         holder.Rating.setText(arrayList.get(position).getRate());
         holder.Synopsis.setText(arrayList.get(position).getSynopsis());
+        holder.imgURL.setImageURI(Uri.parse(arrayList.get(position).getImgURL()));
         Picasso.with(context).load(arrayList.get(position).getImgURL()).resize(70,70).into(holder.imgURL);
 
     }

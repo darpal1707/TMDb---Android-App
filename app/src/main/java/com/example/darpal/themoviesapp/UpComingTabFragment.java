@@ -32,7 +32,7 @@ public class UpComingTabFragment extends Fragment {
     ArrayList<GetterSetter> arrayList = new ArrayList<>();
     UpComing_RecyclerAdapter upComing_recyclerAdapter;
 
-    String imgURL = "";
+    String imgURL = "poster_path";
     String Moviename = "title";
     String RelDate = "release_date";
     String SynDetails = "overview";
@@ -82,12 +82,14 @@ public class UpComingTabFragment extends Fragment {
                     String date = jsonObject.getString(RelDate);
                     String rate = jsonObject.getString(Ratemovie).toString();
                     String syn = jsonObject.getString(SynDetails);
+                    String img = jsonObject.getString(imgURL);
 
                     GetterSetter setterGetter = new GetterSetter();
                     setterGetter.setMoviename(movie);
                     setterGetter.setRelease(date);
                     setterGetter.setRate(rate);
                     setterGetter.setSynopsis(syn);
+                    setterGetter.setImgURL(img);
 
                     arrayList.add(setterGetter);
                 }
